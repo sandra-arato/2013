@@ -1,0 +1,139 @@
+@import url(http://fonts.googleapis.com/css?family=Exo+2&subset=latin,latin-ext);
+
+body {
+	overflow-x: hidden;
+	background-color: #2B353F; 
+	/*background-image: url("../img/bg.jpg");*/
+	color: #EEE; 
+	font-family: 'Exo 2', sans-serif;
+	font-size: 14px;
+	background: -webkit-linear-gradient(100deg, #59799F, #495970, #1C2B30 70%); /* For Safari */
+	background: -o-linear-gradient(100deg, #59799F, #495970, #1C2B30 70%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(100deg, #59799F, #495970, #1C2B30 70%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(100deg, #59799F, #495970, #1C2B30 70%); /* Standard syntax (must be last) */
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2000;
+
+}
+
+nav h1 {
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	letter-spacing: 2px;
+	font-weight: lighter;
+	padding: 8px 36px 10px 20px;
+	text-align: left;
+	background-color: rgba(170,165,165,0.7);
+	background: url("../img/bg.png");
+}
+
+nav div {
+	float: right;
+	width: 140px;
+	height: 140px;
+	margin: 20px 20px 0 0;
+	background: url("../img/bg.png");
+	background-color: rgba(170,165,165,0.7);
+	
+}
+
+nav iframe {
+	display: block;
+	margin: 10px auto;
+	width: 120px;
+	height: 120px;
+}
+
+.description {
+	box-sizing: border-box;
+	background-color: inherit;
+	padding: 20px 6px 14px 12px;
+	
+}
+
+nav span {
+	/*display: inline-block;*/
+	width: 358px;
+	cursor: pointer;
+	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 6px;
+}
+
+nav span:hover {
+	background-color: #BFC2BA;
+	color: #336066;
+}
+
+
+#container img {
+	width: 100%;
+	margin-left: -12px;
+}
+
+#images { 
+	box-sizing: border-box;
+	width: 100%; 
+	height: 550px; 
+	overflow-x: hidden; 
+	list-style: none; 
+
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 12px;
+	-webkit-margin-end: 0;
+	-webkit-padding-start: 0; /*check for multiply browsers*/
+}
+
+#images div {
+	position: absolute;
+	bottom: 40px;
+	left: 30px;
+	max-width: 650px;
+}
+
+
+ul#images li span {
+	display: inline-block;
+	box-sizing: border-box;
+	
+	position: relative;
+	
+	font-size: 40px;
+	text-align: left;
+	margin: 0;
+	padding: 6px 12px 8px 12px;
+	background-color: rgba(170,165,165,0.7);
+	background: url("../img/bg.png");
+}
+
+ul#images li p {
+	position: relative;
+	display: inline-block;
+	font-size: 24px;
+	padding: 6px 12px 10px 12px;
+	margin: 0;
+	background-color: rgba(170,165,165,0.7);
+	background: url("../img/bg.png");
+
+}
+
+.endless_scroll_loader {
+	position: fixed; 
+	bottom: 8px; 
+	left: 10px; 
+	text-shadow: 2px 1px #444;
+}
+
+#map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
