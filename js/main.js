@@ -19,41 +19,42 @@ function firstMapLoad (map,currentplace) {
     	{
 	    "featureType": "water",
 	    "stylers": [
-	      { "hue": "#00ffd5" },
-	      { "saturation": -47 }
+	    	{ "hue": "#00ffcc" },
+	    	{ "saturation": -47 },
+	    	{ "lightness": -24}
 	    ]
 	  },{
 	    "featureType": "landscape",
 	    "stylers": [
-	      { "hue": "#91ff00" },
-	      { "lightness": -11 },
-	      { "gamma": 1 }
+	    	{ "hue": "#4cff00" },
+	    	{ "lightness": -33},
+	    	{ "gamma": 1.04 }
 	    ]
 	  },{
 	    "featureType": "road",
 	    "stylers": [
-	      { "hue": "#ffa200" },
-	      { "weight": 0.4 }
+	    	{ "hue": "#ffa200" },
+	    	{ "weight": 0.4 }
 	    ]
 	  },{
 	    "featureType": "poi",
 	    "elementType": "labels",
 	    "stylers": [
-	      { "hue": "#00ff6f" },
-	      { "lightness": -28 }
+	    	{ "hue": "#00ff6f" },
+	    	{ "lightness": -28 }
 	    ]
 	  },{
 	    "featureType": "administrative",
 	    "stylers": [
-	      { "hue": "#0077ff" },
-	      { "lightness": -20 },
-	      { "gamma": 1.33 }
+	    	{ "hue": "#0077ff" },
+	    	{ "lightness": -20 },
+	    	{ "gamma": 1.33 }
 	    ]
 	  }
     ]
     
     var styledMapOptions = {
-       	name: 'Custom Style'
+    	name: 'Custom Style'
     };
 
 	var mapOptions = {
@@ -67,6 +68,7 @@ function firstMapLoad (map,currentplace) {
 		overviewMapControl: false,
 		disableDoubleClickZoom: true,
 		draggable: false,
+		scrollwheel: false,
 		mapTypeControlOptions: {
 			mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
     		},

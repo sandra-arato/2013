@@ -29,11 +29,6 @@ nav {
 	height: 642px;
 }
 
-#pagination {
-	position: absolute;
-	bottom: 4px;
-}
-
 div#container {
 	width: 78%;
 	float: right;
