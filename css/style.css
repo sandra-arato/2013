@@ -22,12 +22,29 @@ body {
     display: inline-block;
 }
 
-#container div {
-	/*display: block;*/
-	width: 100%;
+nav {
+	position: fixed;
+	left: 0;
+	width: 22%;
+	height: 642px;
+}
+
+#pagination {
+	position: absolute;
+	bottom: 4px;
+}
+
+div#container {
+	width: 78%;
+	float: right;
 }
 
 #container img {
 	width: 100%;
 }
 
+#map-canvas {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}

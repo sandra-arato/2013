@@ -1,8 +1,10 @@
-function renderImg(currentPhoto, i, man) {
-	var main = $("#container");
-	var photoDiv = document.createElement("div");
-	$(photoDiv).html("<img src='" + currentPhoto.url + "'/>");
-	$(photoDiv).appendTo(main);
+function firstMapLoad (map) {
+	var mapOptions = {
+          zoom: 8,
+          center: new google.maps.LatLng(-33.857373,151.214949)
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
 }
 
 function renderPhotos() {
@@ -17,7 +19,15 @@ function renderPhotos() {
 
 function initialize() {
 	renderPhotos();
-	
+	var map;
+    firstMapLoad(map);
+
+    // infinitescroll() is called on the element that surrounds 
+	// the items you will be loading more of
+	$('.scroll').jscroll({
+    debug:true
+	});
+
 }
 	
 
