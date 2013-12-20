@@ -14,6 +14,48 @@ function firstMapLoad (map,currentplace) {
 	
 	$("nav").height($(window).height());
 
+	var MY_MAPTYPE_ID = 'custom_style';
+    var featureOpts = [
+    	{
+	    "featureType": "water",
+	    "stylers": [
+	      { "hue": "#00ffd5" },
+	      { "saturation": -47 }
+	    ]
+	  },{
+	    "featureType": "landscape",
+	    "stylers": [
+	      { "hue": "#91ff00" },
+	      { "lightness": -11 },
+	      { "gamma": 1 }
+	    ]
+	  },{
+	    "featureType": "road",
+	    "stylers": [
+	      { "hue": "#ffa200" },
+	      { "weight": 0.4 }
+	    ]
+	  },{
+	    "featureType": "poi",
+	    "elementType": "labels",
+	    "stylers": [
+	      { "hue": "#00ff6f" },
+	      { "lightness": -28 }
+	    ]
+	  },{
+	    "featureType": "administrative",
+	    "stylers": [
+	      { "hue": "#0077ff" },
+	      { "lightness": -20 },
+	      { "gamma": 1.33 }
+	    ]
+	  }
+    ]
+    
+    var styledMapOptions = {
+       	name: 'Custom Style'
+    };
+
 	var mapOptions = {
 		zoom: 8,
         center: new google.maps.LatLng(currentplace[0],currentplace[1]),
@@ -33,33 +75,7 @@ function firstMapLoad (map,currentplace) {
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    var MY_MAPTYPE_ID = 'custom_style';
-    var featureOpts = [
-    	{
-      stylers: [
-        { hue: '#890000' },
-        { visibility: 'simplified' },
-        { gamma: 0.5 },
-        { weight: 0.5 }
-      ]
-    },
-    {
-      elementType: 'labels',
-      stylers: [
-        { visibility: 'off' }
-      ]
-    },
-    {
-      featureType: 'water',
-      stylers: [
-        { color: '#890000' }
-      ]
-    }
-    ]
-    
-    var styledMapOptions = {
-       	name: 'Custom Style'
-    };
+
 		
 	var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
 		
