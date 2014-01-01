@@ -1,38 +1,19 @@
-// function checkVisibility (element) {
-// 	var top = element.offsetTop;
-// 	var left = element.offsetLeft;
-// 	var width = element.offsetWidth;
-// 	var height = element.offsetHeight;
 
-// 	while(element.offsetParent) {
-// 		el = element.offsetParent;
-// 		top += element.offsetTop;
-// 		left += element.offsetLeft;
-// 	}
-
-// 	return (
-// 		top >= window.pageYOffset &&
-// 		left >= window.pageXOffset &&
-// 		(top + height) <= (window.pageYOffset + window.innerHeight) &&
-// 		(left + width) <= (window.pageXOffset + window.innerWidth)
-// 	);
-
-
-// }
+var map;
 
 function scrollHandler (e) {
-	// console.log("scrolling....")
-	// console.log(e);
 	var scrollUp = e.currentTarget.window.scrollY;
 	var scrollDown = $(window).height() + scrollUp;
-	// console.log("scroll top is " + scrollUp + " and bottom is " + scrollDown);
 
 	$("section").each(function(index) {
 		var currentPos = $(this).position();
-		// console.log("current photo is " + (index + 1) + " and scrollTop value is ", currentPos.top);
 		var currentBottom = currentPos.top + $(this).height();
-		if (scrollUp < currentPos.top && scrollDown > currentBottom) {
-			console.log (index + " is visible");
+		if (scrollUp <= currentPos.top && scrollDown >= currentBottom) {
+
+			var lat = photos[index].latlong[0];
+			var lng = photos[index].latlong[1];
+			var newLatLng = new google.maps.LatLng(lat,lng);
+			map.setCenter(newLatLng);
 		}
 
 		
@@ -41,7 +22,7 @@ function scrollHandler (e) {
 
 }
 
-function placeMarkers(map) {
+function placeMarkers() {
 
 	for (var i = 0, len = photos.length; i < len; i++) {
 		var marker = new google.maps.Marker({
@@ -52,7 +33,7 @@ function placeMarkers(map) {
 	};
 }
 
-function firstMapLoad (map,currentplace) {
+function firstMapLoad (currentPlace) {
 	
 	$("nav").height($(window).height());
 
@@ -101,7 +82,7 @@ function firstMapLoad (map,currentplace) {
 
 	var mapOptions = {
 		zoom: 8,
-		center: new google.maps.LatLng(currentplace[0],currentplace[1]),
+		center: new google.maps.LatLng(currentPlace[0],currentPlace[1]),
 		panControl: false,
 		zoomControl: false,
 		mapTypeControl: false,
@@ -124,7 +105,7 @@ function firstMapLoad (map,currentplace) {
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-	placeMarkers(map);
+	placeMarkers();
 }
 
 function renderPhotos() {
@@ -139,14 +120,13 @@ function renderPhotos() {
 
 function initialize() {
 	renderPhotos();
-	var map;
 	var placeInit = [-33.887054,151.198329];
-	firstMapLoad(map, placeInit);
+	firstMapLoad(placeInit);
 	$(window).resize(function() { 
 		$("nav").height($(window).height()); 
 		$("#map-canvas").css({"height":"100%", "width":"100%"});
 	});
-
+	console.log(map);
 	$(window).scroll(scrollHandler);
 
 	// var visi = checkVisibility($("#sec1"));
