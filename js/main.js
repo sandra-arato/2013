@@ -3,6 +3,8 @@ var map;
 var x = 12;	// zoom upper limit
 var y = 8;	// zoom lower limit
 
+// var timer = window.setTimeout(blabla);
+
 function zoomOut () {
 	while (x>7) {
 		map.setZoom(x);
@@ -27,24 +29,29 @@ function zoomIn() {
 
 
 function scrollHandler (e) {
-	var scrollUp = e.currentTarget.window.scrollY;
-	var scrollDown = $(window).height() + scrollUp;
+	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser
+	var scrollDown = $(window).height() + scrollUp; // bottom of the visible area in the browser
 
 	$("section").each(function(index) {
-		var currentPos = $(this).position();
+		var currentPos = $(this).position(); // image position on the rendered page
 		var currentBottom = currentPos.top + $(this).height();
+
+		var ratio = (scrollDown - currentPos.top)/$(this).height(); // the ratio of visibility that triggers the map
 		
-		if (scrollUp <= currentPos.top && scrollDown >= currentBottom) {
-			// map.setZoom(8);
-			zoomOut();
+		if (scrollUp <= currentPos.top && scrollDown >= currentBottom) { // this is the option when only one image is fully visible
+			// zoomOut();
 			var lat = photos[index].latlong[0];
 			var lng = photos[index].latlong[1];
 			var newLatLng = new google.maps.LatLng(lat,lng);
 			map.panTo(newLatLng);
-			zoomIn();
-			// map.setZoom(12);
+			// zoomIn();
 		}
-
+		else if (scrollUp <= currentPos.top && scrollDown < currentBottom && ratio > 0.8) { // this is the option when an image is not compeletly visible, some parts get hidden
+			var lat = photos[index].latlong[0];
+			var lng = photos[index].latlong[1];
+			var newLatLng = new google.maps.LatLng(lat,lng);
+			map.panTo(newLatLng);
+		}
 		
 	})
 
@@ -141,7 +148,8 @@ function renderPhotos() {
 
 	for (var i = 0, len = photos.length; i < len; i++) {
 		var photoSec = document.createElement("section");
-		$(photoSec).html("<img src='" + photos[i].url + "'/>").attr("id", "sec"+i);
+		$(photoSec).html("<img src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
+		.attr("id", "sec"+i);
 		var desc = document.createElement("div");
 		$(desc).html(photos[i].title).addClass("photo-description");	
 		$(desc).appendTo($(photoSec));			
