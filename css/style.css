@@ -38,6 +38,19 @@ div#container {
 	width: 100%;
 }
 
+.photo-description {
+	display: inline-block;
+	position: absolute;
+	right: 40px;
+	z-index: 2000;
+	font-size: 28px;
+	letter-spacing: 1px;
+	line-height: 1.4;
+	padding: 8px 14px;
+	background-color: rgba(10,10,10,0.72);
+
+}
+
 #map-canvas {
 	height: 100%;
 	padding: 0;

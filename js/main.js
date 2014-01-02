@@ -8,7 +8,7 @@ function zoomOut () {
 		map.setZoom(x);
 		// console.log(x);
 		x--;
-		window.setTimeout(zoomOut, 2500);
+		setTimeout(zoomOut, x*1500);
 	}
 }
 
@@ -17,7 +17,7 @@ function zoomIn() {
 		map.setZoom(y);
 		// console.log(y);
 		y++;
-		window.setTimeout(zoomIn, 2500);
+		setTimeout(zoomIn, y*1500);
 	}
 
 }
@@ -40,7 +40,7 @@ function scrollHandler (e) {
 			var lat = photos[index].latlong[0];
 			var lng = photos[index].latlong[1];
 			var newLatLng = new google.maps.LatLng(lat,lng);
-			map.setCenter(newLatLng);
+			map.panTo(newLatLng);
 			zoomIn();
 			// map.setZoom(12);
 		}
@@ -143,7 +143,7 @@ function renderPhotos() {
 		var photoSec = document.createElement("section");
 		$(photoSec).html("<img src='" + photos[i].url + "'/>").attr("id", "sec"+i);
 		var desc = document.createElement("div");
-		$(desc).html(photos[i].description).addClass("photo-description");	
+		$(desc).html(photos[i].title).addClass("photo-description");	
 		$(desc).appendTo($(photoSec));			
 		$(photoSec).appendTo($("#container"));
 	};
