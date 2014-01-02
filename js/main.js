@@ -1,36 +1,39 @@
 var map;
 
-var x = 12;	// zoom upper limit
-var y = 8;	// zoom lower limit
+var currentZoom;
 
-// var timer = window.setTimeout(blabla);
 
 function zoomOut () {
-	while (x>7) {
-		map.setZoom(x);
-		// console.log(x);
-		x--;
-		setTimeout(zoomOut, x*1500);
+	while (currentZoom>7) {
+		map.setZoom(currentZoom);
+		console.log("zoom out is " + currentZoom);
+		currentZoom--;
 	}
 }
 
-function zoomIn() {
-	while (y<13) {
-		map.setZoom(y);
-		// console.log(y);
-		y++;
-		setTimeout(zoomIn, y*1500);
+function zoomIn () {
+	while (currentZoom<12) {
+		map.setZoom(currentZoom);
+		console.log("zoom in is " + currentZoom);
+		currentZoom++;
 	}
 
 }
 
 
-
+function mapRelocate (i) {
+	var lat = photos[i].latlong[0];
+	var lng = photos[i].latlong[1];
+	var newLatLng = new google.maps.LatLng(lat,lng);
+	map.panTo(newLatLng);
+}
 
 
 function scrollHandler (e) {
 	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser
 	var scrollDown = $(window).height() + scrollUp; // bottom of the visible area in the browser
+
+	currentZoom = map.getZoom();
 
 	$("section").each(function(index) {
 		var currentPos = $(this).position(); // image position on the rendered page
@@ -40,17 +43,15 @@ function scrollHandler (e) {
 		
 		if (scrollUp <= currentPos.top && scrollDown >= currentBottom) { // this is the option when only one image is fully visible
 			// zoomOut();
-			var lat = photos[index].latlong[0];
-			var lng = photos[index].latlong[1];
-			var newLatLng = new google.maps.LatLng(lat,lng);
-			map.panTo(newLatLng);
+			var timer = window.setTimeout(zoomOut, 2000);
+			// clearInterval(timer);
+			mapRelocate(index);
 			// zoomIn();
+			var timer2 = window.setTimeout(zoomIn, 2000);
+			// clearInterval(timer2);
 		}
-		else if (scrollUp <= currentPos.top && scrollDown < currentBottom && ratio > 0.8) { // this is the option when an image is not compeletly visible, some parts get hidden
-			var lat = photos[index].latlong[0];
-			var lng = photos[index].latlong[1];
-			var newLatLng = new google.maps.LatLng(lat,lng);
-			map.panTo(newLatLng);
+		else if (scrollUp <= currentPos.top && scrollDown < currentBottom && ratio > 0.7) { // this is the option when an image is not compeletly visible, some parts get hidden
+			mapRelocate(index);
 		}
 		
 	})
@@ -64,6 +65,7 @@ function placeMarkers() {
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(photos[i].latlong[0],photos[i].latlong[1]),
 			map: map,
+			icon: "img/marker-32.ico",
 			title: photos[i].title
 		});
 	};
