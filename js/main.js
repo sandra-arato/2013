@@ -9,74 +9,26 @@ function mapRelocate (i) {
 }
 
 function scrollHandler (e) {
-	scrollHasStopped = false;
 	
 	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser
-	var scrollDown = $(window).height() + scrollUp; // bottom of the visible area in the browser
-
-	currentZoom = map.getZoom();
-
-	var mapRelocated = false;
-	
-	console.log('---------==========-------');
+	var isScrolledToBottom = $("#container").height() == (scrollUp + $(window).height());
+	var imageCount = $("section").length;
 	$("section").each(function(index) {
-	
-		if (mapRelocated) return;
+
 		var currentPos = $(this).position(); // image position on the rendered page
-	
-/* 		var ratio = (scrollDown - currentPos.top)/$(this).height(); // the ratio of visibility that triggers the map */
 		var currentTop = currentPos.top - scrollUp;
 		var currentBottom = currentTop + $(this).height();
 		
 		var isFullyVisible = ( currentTop >= 0 && currentBottom <= $(window).height() );
 		if (isFullyVisible) {
-			mapRelocate(index);
-			mapRelocated = true;
-			
+			var toIndex = index;
+			if (isScrolledToBottom) {
+				toIndex = imageCount - 1;
+			}
+			mapRelocate(toIndex);
+			return false;
 		}
-		
-		console.log('top, bottom', currentTop, currentBottom, isFullyVisible );
-/*
-		return;
-		
-		
-		
-				
-		
-		//console.log('ratio', $(window).height() , scrollUp, currentPos.top, $(this).height(), ratio);
-		return;
-		if (scrollUp <= currentPos.top && scrollDown >= currentBottom) { // this is the option when only one image is fully visible
-			console.log('zooming out');
-			// zoomOut();
-			var timer = window.setTimeout(zoomOut, 2000);
-			
-			console.log('panTo');
-			// clearInterval(timer);
-			mapRelocate(index);
-			// zoomIn();
-			
-			console.log('zooming in');
-			var timer2 = window.setInterval(zoomIn, 2000);
-			// clearInterval(timer2);
-		}
-		else if (scrollUp <= currentPos.top && scrollDown < currentBottom && ratio > 0.7) { // this is the option when an image is not compeletly visible, some parts get hidden
-			console.log('zooming out');
-			// zoomOut();
-			var timer = window.setInterval(zoomOut, 2000);
-			
-			console.log('panTo');
-			// clearInterval(timer);
-			mapRelocate(index);
-			// zoomIn();
-			
-			console.log('zooming in');
-			var timer2 = window.setInterval(zoomIn, 2000);
-		}
-		
-*/
 	})
-
-
 }
 
 function placeMarkers() {
@@ -182,7 +134,7 @@ function renderPhotos() {
 
 function initialize() {
 	renderPhotos();
-	var placeInit = [-33.887054,151.198329];
+	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
 	$(window).resize(function() { 
 		$("nav").height($(window).height()); 
