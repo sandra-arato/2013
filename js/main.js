@@ -1,25 +1,5 @@
 var map;
-
-var currentZoom;
-
-
-function zoomOut () {
-	while (currentZoom>7) {
-		map.setZoom(currentZoom);
-		console.log("zoom out is " + currentZoom);
-		currentZoom--;
-	}
-}
-
-function zoomIn () {
-	while (currentZoom<12) {
-		map.setZoom(currentZoom);
-		console.log("zoom in is " + currentZoom);
-		currentZoom++;
-	}
-
-}
-
+var currentZoom = 12;
 
 function mapRelocate (i) {
 	var lat = photos[i].latlong[0];
@@ -28,32 +8,72 @@ function mapRelocate (i) {
 	map.panTo(newLatLng);
 }
 
-
 function scrollHandler (e) {
+	scrollHasStopped = false;
+	
 	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser
 	var scrollDown = $(window).height() + scrollUp; // bottom of the visible area in the browser
 
 	currentZoom = map.getZoom();
 
+	var mapRelocated = false;
+	
+	console.log('---------==========-------');
 	$("section").each(function(index) {
+	
+		if (mapRelocated) return;
 		var currentPos = $(this).position(); // image position on the rendered page
-		var currentBottom = currentPos.top + $(this).height();
-
-		var ratio = (scrollDown - currentPos.top)/$(this).height(); // the ratio of visibility that triggers the map
+	
+/* 		var ratio = (scrollDown - currentPos.top)/$(this).height(); // the ratio of visibility that triggers the map */
+		var currentTop = currentPos.top - scrollUp;
+		var currentBottom = currentTop + $(this).height();
 		
+		var isFullyVisible = ( currentTop >= 0 && currentBottom <= $(window).height() );
+		if (isFullyVisible) {
+			mapRelocate(index);
+			mapRelocated = true;
+			
+		}
+		
+		console.log('top, bottom', currentTop, currentBottom, isFullyVisible );
+/*
+		return;
+		
+		
+		
+				
+		
+		//console.log('ratio', $(window).height() , scrollUp, currentPos.top, $(this).height(), ratio);
+		return;
 		if (scrollUp <= currentPos.top && scrollDown >= currentBottom) { // this is the option when only one image is fully visible
+			console.log('zooming out');
 			// zoomOut();
 			var timer = window.setTimeout(zoomOut, 2000);
+			
+			console.log('panTo');
 			// clearInterval(timer);
 			mapRelocate(index);
 			// zoomIn();
-			var timer2 = window.setTimeout(zoomIn, 2000);
+			
+			console.log('zooming in');
+			var timer2 = window.setInterval(zoomIn, 2000);
 			// clearInterval(timer2);
 		}
 		else if (scrollUp <= currentPos.top && scrollDown < currentBottom && ratio > 0.7) { // this is the option when an image is not compeletly visible, some parts get hidden
+			console.log('zooming out');
+			// zoomOut();
+			var timer = window.setInterval(zoomOut, 2000);
+			
+			console.log('panTo');
+			// clearInterval(timer);
 			mapRelocate(index);
+			// zoomIn();
+			
+			console.log('zooming in');
+			var timer2 = window.setInterval(zoomIn, 2000);
 		}
 		
+*/
 	})
 
 
@@ -119,7 +139,7 @@ function firstMapLoad (currentPlace) {
 	};
 
 	var mapOptions = {
-		zoom: 12,
+		zoom: currentZoom,
 		center: new google.maps.LatLng(currentPlace[0],currentPlace[1]),
 		panControl: false,
 		zoomControl: false,
