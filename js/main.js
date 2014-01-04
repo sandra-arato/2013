@@ -13,22 +13,61 @@ function scrollHandler (e) {
 	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser
 	var isScrolledToBottom = $("#container").height() == (scrollUp + $(window).height());
 	var imageCount = $("section").length;
-	$("section").each(function(index) {
+	var visibleImagesArray = [];
 
-		var currentPos = $(this).position(); // image position on the rendered page
-		var currentTop = currentPos.top - scrollUp;
-		var currentBottom = currentTop + $(this).height();
-		
-		var isFullyVisible = ( currentTop >= 0 && currentBottom <= $(window).height() );
-		if (isFullyVisible) {
-			var toIndex = index;
-			if (isScrolledToBottom) {
-				toIndex = imageCount - 1;
-			}
-			mapRelocate(toIndex);
-			return false;
+	// search for visible items based on rendered position:
+
+	for (var i = 0; i < imageCount; i++) {
+		var currentPos = $("#sec"+i).position();
+		var currentTop = currentPos.top;
+		var currentHeight = $("#sec" + i).height();
+		var currentBottom = currentTop + currentHeight;
+
+		var visible = ( !(currentBottom-scrollUp < 0 && currentTop-scrollUp < 0) &&
+			!( currentBottom > (scrollUp + $(window).height()) && currentTop > (scrollUp + $(window).height()) ) )
+
+		if (visible) {
+			var currentImg = {
+				index: i, 
+				top: currentTop, 
+				bottom: currentBottom, 
+				scrollTop: scrollUp, 
+				scrollBottom: (scrollUp + $(window).height())
+			};
+
+			visibleImagesArray.push(currentImg);
 		}
-	})
+
+	}
+	
+	// search for maximum visibility amongst visible items only:
+
+	var maxPercentage = 0;
+	var maxIndex = -1;
+	for (var j = 0, len = visibleImagesArray.length; j < len; j++) {
+		var height = $("#sec" + visibleImagesArray[j].index).height();
+		var percentagePos = (visibleImagesArray[j].scrollBottom - visibleImagesArray[j].top) / height;
+		var percentageNeg = (visibleImagesArray[j].bottom - visibleImagesArray[j].scrollTop) / height;
+
+		var percentage;
+
+		if (percentageNeg < percentagePos) {
+			percentage = percentageNeg;
+		} 
+		else {
+			percentage = percentagePos;
+		};
+
+		if (percentage > maxPercentage) {
+			maxPercentage = percentage;
+			console.log(visibleImagesArray[j].index, "egyik");
+			maxIndex = visibleImagesArray[j].index;
+		};
+			
+		
+	};
+
+	mapRelocate(maxIndex);
 }
 
 function placeMarkers() {
