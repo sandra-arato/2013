@@ -1,5 +1,6 @@
 var map;
 var currentZoom = 12;
+var isScreenSmallPortrait;
 
 function mapRelocate (i) {
 	var lat = photos[i].latlong[0];
@@ -60,7 +61,6 @@ function scrollHandler (e) {
 
 		if (percentage > maxPercentage) {
 			maxPercentage = percentage;
-			console.log(visibleImagesArray[j].index, "egyik");
 			maxIndex = visibleImagesArray[j].index;
 		};
 			
@@ -84,7 +84,10 @@ function placeMarkers() {
 
 function firstMapLoad (currentPlace) {
 	
-	$("nav").height($(window).height());
+	if (!isScreenSmallPortrait) {
+		$("nav").height($(window).height());
+	};
+	
 
 	var MY_MAPTYPE_ID = 'custom_style';
 	var featureOpts = [
@@ -172,18 +175,26 @@ function renderPhotos() {
 
 
 function initialize() {
+
+	isScreenSmallPortrait = window.matchMedia("(orientation: portrait) and (max-width: 769px)").matches;
+
 	renderPhotos();
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-	$(window).resize(function() { 
-		$("nav").height($(window).height()); 
-		$("#map-canvas").css({"height":"100%", "width":"100%"});
-	});
+	
+	if (!isScreenSmallPortrait) {
+		$(window).resize(function() { 
+			$("nav").height($(window).height()); 
+			$("#map-canvas").css({"height":"100%", "width":"100%"});
+		});
+	}
+	else {
+		// var newHeight = $("div#container:last-child").height();
+		// console.log(newHeight);
+		$("div#container:last-child").css("margin-bottom", $("nav").height());
+	};
+	
 	$(window).scroll(scrollHandler);
-
-	// var visi = checkVisibility($("#sec1"));
-	// console.log(visi);
-
 
 }
 	
