@@ -36,6 +36,10 @@ div#container {
 	float: right;
 }
 
+#container section {
+	box-shadow: 0px -2px 5px #A5B5C4;
+}
+
 #container img {
 	width: 100%;
 }
@@ -76,10 +80,6 @@ div#container {
 	div#container {
 		width: 100%;
 		top: 250px;
-	}
-
-	div#container:last-child {
-		margin-bottom: 200px;
 	}
 
 	.photo-description {

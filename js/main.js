@@ -2,6 +2,22 @@ var map;
 var currentZoom = 12;
 var isScreenSmallPortrait;
 
+function windowResponsiveResize () {
+	
+	isScreenSmallPortrait = window.matchMedia("(orientation: portrait) and (max-width: 769px)").matches;
+	
+	if (!isScreenSmallPortrait) {
+		console.log("nagy");
+		$("nav").height($(window).height()); 
+		$("#map-canvas").css({"height":"100%", "width":"100%"});
+		$("div#container:last-child").css("margin-bottom", 0);
+	}
+	else {
+		$("nav").height($(window).height()*0.263); 
+		$("div#container:last-child").css("margin-bottom", $(window).height()*0.263);
+	};
+}
+
 function mapRelocate (i) {
 	var lat = photos[i].latlong[0];
 	var lng = photos[i].latlong[1];
@@ -171,6 +187,10 @@ function renderPhotos() {
 		$(desc).appendTo($(photoSec));			
 		$(photoSec).appendTo($("#container"));
 	};
+
+	if (isScreenSmallPortrait) {
+		$("div#container:last-child").css("margin-bottom", $(window).height()*0.263);
+	};
 }
 
 
@@ -181,18 +201,8 @@ function initialize() {
 	renderPhotos();
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-	
-	if (!isScreenSmallPortrait) {
-		$(window).resize(function() { 
-			$("nav").height($(window).height()); 
-			$("#map-canvas").css({"height":"100%", "width":"100%"});
-		});
-	}
-	else {
-		// var newHeight = $("div#container:last-child").height();
-		// console.log(newHeight);
-		$("div#container:last-child").css("margin-bottom", $("nav").height());
-	};
+
+	$(window).resize(windowResponsiveResize);
 	
 	$(window).scroll(scrollHandler);
 
