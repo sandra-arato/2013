@@ -63,6 +63,8 @@ div#container {
 	margin: 0;
 }
 
+/* this is NOT a mobile-first website. but it still has to look OK on mobile */
+
 @media (orientation: portrait) and (max-width: 769px) {
 	nav {
 		position: fixed;

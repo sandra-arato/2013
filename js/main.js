@@ -8,14 +8,15 @@ function windowResponsiveResize () {
 	
 	if (!isScreenSmallPortrait) {
 		console.log("nagy");
-		$("nav").height($(window).height()); 
-		$("#map-canvas").css({"height":"100%", "width":"100%"});
+		$("nav").height($(window).height());
 		$("div#container:last-child").css("margin-bottom", 0);
 	}
 	else {
 		$("nav").height($(window).height()*0.263); 
 		$("div#container:last-child").css("margin-bottom", $(window).height()*0.263);
 	};
+
+	$("#map-canvas").css({"height":"100%", "width":"100%"});
 }
 
 function mapRelocate (i) {
@@ -79,8 +80,6 @@ function scrollHandler (e) {
 			maxPercentage = percentage;
 			maxIndex = visibleImagesArray[j].index;
 		};
-			
-		
 	};
 
 	mapRelocate(maxIndex);
@@ -202,9 +201,9 @@ function initialize() {
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
 
-	$(window).resize(windowResponsiveResize);
-	
-	$(window).scroll(scrollHandler);
+	$(window)
+		.resize(windowResponsiveResize)
+		.scroll(scrollHandler);
 
 }
 	
