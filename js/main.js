@@ -20,8 +20,9 @@ function windowResponsiveResize () {
 }
 
 function mapRelocate (i) {
-	var lat = photos[i].latlong[0];
-	var lng = photos[i].latlong[1];
+	console.log('maprelocate', i);
+	var lat = (photos[i].latlong[0]);
+	var lng = (photos[i].latlong[1]);
 	var newLatLng = new google.maps.LatLng(lat,lng);
 	map.panTo(newLatLng);
 }
@@ -57,6 +58,8 @@ function scrollHandler (e) {
 		}
 
 	}
+
+	console.log(visibleImagesArray);
 	
 	// search for maximum visibility amongst visible items only:
 
@@ -80,6 +83,8 @@ function scrollHandler (e) {
 			maxPercentage = percentage;
 			maxIndex = visibleImagesArray[j].index;
 		};
+
+		console.log(maxIndex); //-1 always in IE??
 	};
 
 	mapRelocate(maxIndex);
@@ -200,10 +205,9 @@ function initialize() {
 	renderPhotos();
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-
-	$(window)
-		.resize(windowResponsiveResize)
-		.scroll(scrollHandler);
+	console.log(photos[0].latlong[0]);
+	$(window).resize(windowResponsiveResize);
+	$(window).scroll(scrollHandler);
 
 }
 	
