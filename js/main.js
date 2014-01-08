@@ -29,7 +29,7 @@ function mapRelocate (i) {
 
 function scrollHandler (e) {
 	
-	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser
+	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser - source of IE bug
 	var isScrolledToBottom = $("#container").height() == (scrollUp + $(window).height());
 	var imageCount = $("section").length;
 	var visibleImagesArray = [];
@@ -44,14 +44,14 @@ function scrollHandler (e) {
 
 		var visible = ( !(currentBottom-scrollUp < 0 && currentTop-scrollUp < 0) &&
 			!( currentBottom > (scrollUp + $(window).height()) && currentTop > (scrollUp + $(window).height()) ) )
-
+		console.log(i, currentTop, currentBottom, scrollUp, scrollUp + $(window).height());
 		if (visible) {
 			var currentImg = {
-				index: i, 
-				top: currentTop, 
-				bottom: currentBottom, 
-				scrollTop: scrollUp, 
-				scrollBottom: (scrollUp + $(window).height())
+				"index": i, 
+				"top": currentTop, 
+				"bottom": currentBottom, 
+				"scrollTop": scrollUp, 
+				"scrollBottom": (scrollUp + window.innerHeight)
 			};
 
 			visibleImagesArray.push(currentImg);
@@ -59,7 +59,7 @@ function scrollHandler (e) {
 
 	}
 
-	console.log(visibleImagesArray);
+	console.log(visibleImagesArray[0].scrollBottom);
 	
 	// search for maximum visibility amongst visible items only:
 
@@ -70,7 +70,7 @@ function scrollHandler (e) {
 		var percentagePos = (visibleImagesArray[j].scrollBottom - visibleImagesArray[j].top) / height;
 		var percentageNeg = (visibleImagesArray[j].bottom - visibleImagesArray[j].scrollTop) / height;
 
-		var percentage;
+		var percentage = 0;
 
 		if (percentageNeg < percentagePos) {
 			percentage = percentageNeg;
@@ -84,7 +84,7 @@ function scrollHandler (e) {
 			maxIndex = visibleImagesArray[j].index;
 		};
 
-		console.log(maxIndex); //-1 always in IE??
+		// console.log(maxIndex); //-1 always in IE??
 	};
 
 	mapRelocate(maxIndex);
