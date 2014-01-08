@@ -7,7 +7,6 @@ function windowResponsiveResize () {
 	isScreenSmallPortrait = window.matchMedia("(orientation: portrait) and (max-width: 769px)").matches;
 	
 	if (!isScreenSmallPortrait) {
-		console.log("nagy");
 		$("nav").height($(window).height());
 		$("div#container:last-child").css("margin-bottom", 0);
 	}
@@ -20,7 +19,6 @@ function windowResponsiveResize () {
 }
 
 function mapRelocate (i) {
-	console.log('maprelocate', i);
 	var lat = (photos[i].latlong[0]);
 	var lng = (photos[i].latlong[1]);
 	var newLatLng = new google.maps.LatLng(lat,lng);
@@ -29,7 +27,7 @@ function mapRelocate (i) {
 
 function scrollHandler (e) {
 	
-	var scrollUp = e.currentTarget.window.scrollY; // top of the visible area in the browser - source of IE bug
+	var scrollUp = e.currentTarget.window.pageYOffset; // works for Chrome, Firefox, IE9+, 
 	var isScrolledToBottom = $("#container").height() == (scrollUp + $(window).height());
 	var imageCount = $("section").length;
 	var visibleImagesArray = [];
@@ -44,14 +42,13 @@ function scrollHandler (e) {
 
 		var visible = ( !(currentBottom-scrollUp < 0 && currentTop-scrollUp < 0) &&
 			!( currentBottom > (scrollUp + $(window).height()) && currentTop > (scrollUp + $(window).height()) ) )
-		console.log(i, currentTop, currentBottom, scrollUp, scrollUp + $(window).height());
 		if (visible) {
 			var currentImg = {
 				"index": i, 
 				"top": currentTop, 
 				"bottom": currentBottom, 
 				"scrollTop": scrollUp, 
-				"scrollBottom": (scrollUp + window.innerHeight)
+				"scrollBottom": (scrollUp + $(window).height())
 			};
 
 			visibleImagesArray.push(currentImg);
@@ -59,8 +56,6 @@ function scrollHandler (e) {
 
 	}
 
-	console.log(visibleImagesArray[0].scrollBottom);
-	
 	// search for maximum visibility amongst visible items only:
 
 	var maxPercentage = 0;
@@ -83,8 +78,6 @@ function scrollHandler (e) {
 			maxPercentage = percentage;
 			maxIndex = visibleImagesArray[j].index;
 		};
-
-		// console.log(maxIndex); //-1 always in IE??
 	};
 
 	mapRelocate(maxIndex);
@@ -205,7 +198,6 @@ function initialize() {
 	renderPhotos();
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-	console.log(photos[0].latlong[0]);
 	$(window).resize(windowResponsiveResize);
 	$(window).scroll(scrollHandler);
 
