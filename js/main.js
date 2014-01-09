@@ -8,11 +8,11 @@ function windowResponsiveResize () {
 	
 	if (!isScreenSmallPortrait) {
 		$("nav").height($(window).height());
-		$("div#container:last-child").css("margin-bottom", 0);
+		$("section:last-child").css("margin-bottom", 0);
 	}
 	else {
 		$("nav").height($(window).height()*0.263); 
-		$("div#container:last-child").css("margin-bottom", $(window).height()*0.263);
+		$("section:last-child").css("margin-bottom", $(window).height()*0.263);
 	};
 
 	$("#map-canvas").css({"height":"100%", "width":"100%"});
@@ -186,7 +186,7 @@ function renderPhotos() {
 	};
 
 	if (isScreenSmallPortrait) {
-		$("div#container:last-child").css("margin-bottom", $(window).height()*0.263);
+		$("section:last-child").css("margin-bottom", $(window).height()*0.263);
 	};
 }
 
@@ -195,11 +195,18 @@ function initialize() {
 
 	isScreenSmallPortrait = window.matchMedia("(orientation: portrait) and (max-width: 769px)").matches;
 
+	// polyfill for older browsers
+	if (matchMedia('(max-width: 769px)').matches) {
+		isScreenSmallPortrait=true;
+	}
+
 	renderPhotos();
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-	$(window).resize(windowResponsiveResize);
-	$(window).scroll(scrollHandler);
+	$("#container:last-child").addClass("last");
+	$(window)
+		.resize(windowResponsiveResize)
+		.scroll(scrollHandler);
 
 }
 	
