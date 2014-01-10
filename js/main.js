@@ -1,6 +1,7 @@
 var map;
 var currentZoom = 12;
 var isScreenSmallPortrait;
+var ie8;
 
 function windowResponsiveResize () {
 	
@@ -28,6 +29,11 @@ function mapRelocate (i) {
 function scrollHandler (e) {
 	
 	var scrollUp = e.currentTarget.window.pageYOffset; // works for Chrome, Firefox, IE9+, 
+
+	if (ie8) {
+		var scrollUp = document.documentElement.scrollTop;
+	};
+
 	var isScrolledToBottom = $("#container").height() == (scrollUp + $(window).height());
 	var imageCount = $("section").length;
 	var visibleImagesArray = [];
@@ -199,11 +205,15 @@ function initialize() {
 	if (matchMedia('(max-width: 769px)').matches) {
 		isScreenSmallPortrait=true;
 	}
+	// check if the browser is old IE
+	if ($('html').is('.ie8-')) {
+		ie8 = true;
+	}
 
 	renderPhotos();
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-	$("#container:last-child").addClass("last");
+	// $("#container:last-child").addClass("last");
 	$(window)
 		.resize(windowResponsiveResize)
 		.scroll(scrollHandler);
