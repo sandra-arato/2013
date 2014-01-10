@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if lte IE 8]>
-  <html lang="en" class="ie8-">
+  <html lang="en" class="ie8">
 <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
   <html lang="en">
@@ -28,6 +28,15 @@
       <div id="map-canvas"></div>
     </nav>
     <div id="container" class="scroll">
+      <!--[if lte IE 8 ]>
+      <div class="ie8">
+        <p>OOPS!</p>
+        <p>Seems like your browser is way to old to display everything properly. Please upgrade to something newer to fully enjoy the experience! Just click on any of the browsers below to get to their download page:</p>
+        <a href="https://www.google.com/intl/en/chrome/browser/"><img src="img/chr-logo.png"></a>
+        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie"><img src="img/ie-logo.png"></a>
+        <a href="http://www.mozilla.org/en-US/firefox/new/"><img src="img/ff-logo.png"></a>
+      </div>
+    <![endif]-->
     </div>
   </body>
 </html>

@@ -47,7 +47,8 @@ function scrollHandler (e) {
 		var currentBottom = currentTop + currentHeight;
 
 		var visible = ( !(currentBottom-scrollUp < 0 && currentTop-scrollUp < 0) &&
-			!( currentBottom > (scrollUp + $(window).height()) && currentTop > (scrollUp + $(window).height()) ) )
+			!( currentBottom > (scrollUp + $(window).height()) && currentTop > (scrollUp + $(window).height()) ) );
+
 		if (visible) {
 			var currentImg = {
 				"index": i, 
@@ -201,19 +202,23 @@ function initialize() {
 
 	isScreenSmallPortrait = window.matchMedia("(orientation: portrait) and (max-width: 769px)").matches;
 
-	// polyfill for older browsers
+	// polyfill for IE9+ browsers
 	if (matchMedia('(max-width: 769px)').matches) {
 		isScreenSmallPortrait=true;
 	}
 	// check if the browser is old IE
-	if ($('html').is('.ie8-')) {
+	if ($('html').is('.ie8')) {
 		ie8 = true;
 	}
 
 	renderPhotos();
+	
+	if (ie8) {
+		$(".photo-description").addClass("solid-background");
+	};
+	
 	var placeInit = [-34.671529,150.861336];
 	firstMapLoad(placeInit);
-	// $("#container:last-child").addClass("last");
 	$(window)
 		.resize(windowResponsiveResize)
 		.scroll(scrollHandler);
