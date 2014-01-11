@@ -184,7 +184,7 @@ function renderPhotos() {
 
 	for (var i = 0, len = photos.length; i < len; i++) {
 		var photoSec = document.createElement("section");
-		$(photoSec).html("<img src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
+		$(photoSec).html("<img src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
 		.attr("id", "sec"+i);
 		var desc = document.createElement("div");
 		$(desc).html(photos[i].title).addClass("photo-description");	
@@ -202,7 +202,7 @@ function initialize() {
 
 	isScreenSmallPortrait = window.matchMedia("(orientation: portrait) and (max-width: 769px)").matches;
 
-	// polyfill for IE9+ browsers
+	// polyfill for IE9+ browsers - check this if I need it for prod
 	if (matchMedia('(max-width: 769px)').matches) {
 		isScreenSmallPortrait=true;
 	}
@@ -212,6 +212,13 @@ function initialize() {
 	}
 
 	renderPhotos();
+
+	(function() {
+		var bLazy = new Blazy({
+			selector: "section img",
+			offset: 1600
+		});
+	})();
 	
 	if (ie8) {
 		$(".photo-description").addClass("solid-background");
