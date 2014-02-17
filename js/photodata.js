@@ -1,6 +1,6 @@
 var photos = [
 	{
-	    url:"img/1.jpg",
+	    url:"img/1.jpeg",
 	    date:"2013/08/24",
 	    where:"Kiama",
 	    latlong: [-34.671529,150.861336],
@@ -9,7 +9,7 @@ var photos = [
 	},
 
 	{
-	    url:"img/2.jpg",
+	    url:"img/2.jpeg",
 	    date:"2013/07/20",
 	    where:"Stanwell Park",
 	    latlong: [-34.228019,150.989245],
@@ -18,7 +18,7 @@ var photos = [
 	},
 
 	{
-	    url:"img/3.jpg",
+	    url:"img/3.jpeg",
 	    date:"2013/07/14",
 	    where:"Canberra",
 	    latlong: [-35.290328,149.117965],
@@ -27,7 +27,7 @@ var photos = [
 	},
 
 	{
-	    url:"img/4.jpg",
+	    url:"img/4.jpeg",
 	    date:"2013/06/23",
 	    where:"Sydney",
 	    latlong: [-33.72151,150.33736],
@@ -36,7 +36,7 @@ var photos = [
 	},
 
 	{
-	    url:"img/5.jpg",
+	    url:"img/5.jpeg",
 	    date:"2013/07/07",
 	    where:"Bondi",
 	    latlong: [-33.890795,151.274307],
@@ -45,7 +45,7 @@ var photos = [
 	},
 
 	{
-	    url:"img/6.jpg",
+	    url:"img/6.jpeg",
 	    date:"2013/02/16",
 	    where:"New Zealand",
 	    latlong: [-40.956308,173.05447],
@@ -54,7 +54,7 @@ var photos = [
 	},
 
 	{
-	    url:"img/7.jpg",
+	    url:"img/7.jpeg",
 	    date:"2013/03/01",
 	    where:"Milford Sound",
 	    latlong: [-44.677686,167.913124],

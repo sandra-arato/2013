@@ -184,7 +184,7 @@ function renderPhotos() {
 
 	for (var i = 0, len = photos.length; i < len; i++) {
 		var photoSec = document.createElement("section");
-		$(photoSec).html("<img src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
+		$(photoSec).html("<img src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
 		.attr("id", "sec"+i);
 		var desc = document.createElement("div");
 		$(desc).html(photos[i].title).addClass("photo-description");	
