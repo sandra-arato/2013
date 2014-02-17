@@ -5,24 +5,18 @@ for (var i = 1; i <75; i++) {
 		url: "img/" + i + ".jpeg",
 		where: "TBC",
 		latlong: [-35.290328,149.117965],
-		title: "Undefined title"
+		title: "photo " + i
 	}
 	photos.push(currentPhoto);
 };
 
-function namePhoto (num, title) {
+function setPhoto (num, label, place, geolocation) {
 	var i = num - 1;
-	photos[i].title = title;
-}
-
-function placePhoto (num, place, latlng) {
-	var i = num - 1;
+	photos[i].title = label;
 	photos[i].where = place;
-	photos[i].latlong = latlng;
+	photos[i].latlong = geolocation;
 }
 
-// this is how you give a new title to 3.jpeg
-namePhoto(3, "test");
-
-// this is how you place it on the map - google location first
-placePhoto(3, "Oman", [23.61000,58.54000]);
+// this is how you label and place a photo:
+// number, label, place, geolocation
+setPhoto(3, "Kupola", "Oman", [23.61000,58.54000]);
