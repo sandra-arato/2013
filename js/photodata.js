@@ -19,4 +19,14 @@ function setPhoto (num, label, place, geolocation) {
 
 // this is how you label and place a photo:
 // number, label, place, geolocation
+setPhoto(1, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(2, "Kupola", "Oman", [23.61000,58.54000]);
 setPhoto(3, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(4, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(5, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(6, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(7, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(8, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(9, "Kupola", "Oman", [23.61000,58.54000]);
+setPhoto(10, "Kupola", "Oman", [23.61000,58.54000]);
+
