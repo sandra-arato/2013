@@ -19,7 +19,7 @@ function setPhoto (num, label, place, geolocation) {
 
 // this is how you label and place a photo:
 // number, label, place, geolocation
-setPhoto(1, "Al Alam Palace", "Oman", [23.2159086,58.59469]);
+setPhoto(1, "Al Alam Palace", "Oman", [23.612550, 58.593232]);
 setPhoto(2, "Kalbuh Park, Muscat, Oman", "Oman", [23.6234795,58.5856329]);
 setPhoto(3, "Sultan Qaboos Grand Mosque", "Oman", [23.5838801,58.3885621]);
 setPhoto(4, "Muscat, Oman", "Oman", [23.61000,58.54000]);

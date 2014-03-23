@@ -224,7 +224,7 @@ function initialize() {
 		$(".photo-description").addClass("solid-background");
 	};
 	
-	var placeInit = [-34.671529,150.861336];
+	var placeInit = [23.612550, 58.593232];
 	firstMapLoad(placeInit);
 	$(window)
 		.resize(windowResponsiveResize)
