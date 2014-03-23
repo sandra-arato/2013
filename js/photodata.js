@@ -25,17 +25,17 @@ function setPhoto (num, label, place, month, geolocation, zoom) {
 
 // this is how you label and place a photo:
 // number, label, place, geolocation
-setPhoto(1, "Al Alam Palace", "Oman", "January", [23.612550, 58.593232]);
-setPhoto(2, "Kalbuh Park, Muscat, Oman", "Oman", "January", [23.6234795,58.5856329]);
-setPhoto(3, "Sultan Qaboos Grand Mosque", "Oman", "January", [23.5838801,58.3885621]);
-setPhoto(4, "Muscat, Oman", "Oman", "January", [23.61000,58.54000]);
-setPhoto(5, "Suwadi Al Batha, Oman", "Oman", "January", [23.7745163,57.7828305]);
+setPhoto(1, "Al Alam Palace, Muscat", "Oman", "January", [23.612550, 58.593232]);
+setPhoto(2, "Kalbuh Park, Muscat", "Oman", "January", [23.6234795,58.5856329]);
+setPhoto(3, "Sultan Qaboos Grand Mosque, Muscat", "Oman", "January", [23.5838801,58.3885621]);
+setPhoto(4, "Muscat", "Oman", "January", [23.61000,58.54000]);
+setPhoto(5, "Suwadi Al Batha", "Oman", "January", [23.7745163,57.7828305]);
 setPhoto(6, "Ibra", "Oman", "January", [22.72719,58.524040], 9);
-setPhoto(7, "Wahiba Sands, Oman", "Oman", "January", [21.4377736,58.5543821], 8);
-setPhoto(8, "Jebel Shams, Oman", "Oman", "January", [23.2369444,57.2638888], 9);
-setPhoto(9, "Bimma, Oman", "Oman", "January", [22.9887905,59.1371861], 9);
-setPhoto(10, "Jebel Shams, Oman", "Oman", "January", [23.2369444,57.2638888], 9);
-setPhoto(11, "Auckland, New Zealand", "New Zealand", "January", [-36.842042,174.76515], 14);
+setPhoto(7, "Wahiba Sands", "Oman", "January", [21.4377736,58.5543821], 8);
+setPhoto(8, "Jebel Shams", "Oman", "January", [23.2369444,57.2638888], 9);
+setPhoto(9, "Bimma", "Oman", "January", [22.9887905,59.1371861], 9);
+setPhoto(10, "Jebel Shams", "Oman", "January", [23.2369444,57.2638888], 9);
+setPhoto(11, "Auckland", "New Zealand", "January", [-36.842042,174.76515], 14);
 setPhoto(12, "Sky Tower, Auckland", "New Zealand", "January", [-36.848684,174.761967], 14);
 setPhoto(13, "Waitemata Harbour", "New Zealand", "January", [-36.836889,174.775340], 13);
 setPhoto(14, "Auckland Harbour Bridge", "New Zealand", "January", [-36.8308764,174.7454829], 14);
@@ -72,7 +72,7 @@ setPhoto(44, "Graffiti Lane, Melbourne", "Australia", "June", [-37.814900, 144.9
 setPhoto(45, "Melbourne CBD", "Australia", "June", [-37.814764, 144.963374]);
 setPhoto(46, "Luna Park, Melbourne", "Australia", "June", [-37.867139, 144.976820]);
 setPhoto(47, "Melbourne", "Australia", "June", [-37.863855, 144.971070]);
-setPhoto(48, "Shine of Remembrance", "Australia", "June", [-37.830046, 144.973768]);
+setPhoto(48, "Shine of Remembrance, Melbourne", "Australia", "June", [-37.830046, 144.973768]);
 setPhoto(49, "Parliament, Canberra", "Australia", "July", [-35.307989, 149.124552]);
 setPhoto(50, "Parliament, Canberra", "Australia", "July", [-35.307989, 149.124552]);
 setPhoto(51, "Australian War Memorial", "Australia", "July", [-35.280878, 149.148510]);

@@ -196,7 +196,7 @@ function renderPhotos() {
 		$(photoSec).html("<img src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
 		.attr("id", "sec"+i);
 		var desc = document.createElement("div");
-		$(desc).html(photos[i].title).addClass("photo-description");	
+		$(desc).html(photos[i].title + ', ' + photos[i].where).addClass("photo-description");	
 		$(desc).appendTo($(photoSec));	
 		
 		var month = document.createElement("div");
