@@ -37,6 +37,7 @@ div#container {
 
 #container section {
 	box-shadow: 0px -2px 5px #A5B5C4;
+	position: relative;
 }
 
 #container img {
@@ -53,7 +54,11 @@ div#container {
 	line-height: 1.4;
 	padding: 8px 14px;
 	background-color: rgba(10,10,10,0.72);
-
+	text-align: right;
+}
+.photo-month {
+	top: 58px;
+	font-size: 18px;
 }
 
 #map-canvas {
@@ -117,3 +122,33 @@ div.ie8 {
 	}
 }
 
+label {
+	position: absolute;
+	margin: 0 auto;
+	z-index: 10000;
+	left: 50%;
+	width: 80%;
+	margin-left: -40%;
+	margin-top: -100px;
+	font-size: 80px;
+	background: rgba(255, 255, 255, 0.72);
+	top: 50%;
+	text-align: center;
+	color: #030303;
+	height: 200px;
+	padding-top: 50px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-webkit-transition:top .3s ease-in-out;
+	-moz-transition:top .3s ease-in-out;
+	-o-transition:top .3s ease-in-out;
+	transition:top .3s ease-in-out
+}
+
+label small {
+	display: block;
+	font-size: 18px;
+	text-transform: uppercase;
+	margin-top: 10px;
+}
