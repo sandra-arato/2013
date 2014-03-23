@@ -24,6 +24,7 @@ function mapRelocate (i) {
 	var lng = (photos[i].latlong[1]);
 	var newLatLng = new google.maps.LatLng(lat,lng);
 	map.panTo(newLatLng);
+	map.setZoom(photos[i].zoom);
 }
 
 function scrollHandler (e) {
@@ -34,7 +35,15 @@ function scrollHandler (e) {
 		var scrollUp = document.documentElement.scrollTop;
 	};
 
-	var isScrolledToBottom = $("#container").height() == (scrollUp + $(window).height());
+	
+	var isScrolledToBottom = $("#container").height() <= (scrollUp + $(window).height());
+	
+	if (scrollUp > 0) {
+		$('body > label').css('top', '-1000px');		
+	}
+	else {
+		$('body > label').css('top', '50%');
+	}
 	var imageCount = $("section").length;
 	var visibleImagesArray = [];
 
@@ -188,7 +197,11 @@ function renderPhotos() {
 		.attr("id", "sec"+i);
 		var desc = document.createElement("div");
 		$(desc).html(photos[i].title).addClass("photo-description");	
-		$(desc).appendTo($(photoSec));			
+		$(desc).appendTo($(photoSec));	
+		
+		var month = document.createElement("div");
+		$(month).html(photos[i].when).addClass("photo-description").addClass("photo-month");	
+		$(month).appendTo($(photoSec));	
 		$(photoSec).appendTo($("#container"));
 	};
 
@@ -224,7 +237,7 @@ function initialize() {
 		$(".photo-description").addClass("solid-background");
 	};
 	
-	var placeInit = [-34.671529,150.861336];
+	var placeInit = [23.612550, 58.593232];
 	firstMapLoad(placeInit);
 	$(window)
 		.resize(windowResponsiveResize)
