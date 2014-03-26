@@ -95,7 +95,7 @@ function scrollHandler (e) {
 			maxIndex = visibleImagesArray[j].index;
 		};
 	};
-
+	ga('send', 'event', 'home', 'scrolled', 'image', maxIndex);
 	mapRelocate(maxIndex);
 }
 
