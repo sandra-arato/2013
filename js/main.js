@@ -44,6 +44,7 @@ function scrollHandler (e) {
 	else {
 		$('body > label').css('top', '50%');
 	}
+	$('footer').css('bottom', isScrolledToBottom ? '0px': '-100px');
 	var imageCount = $("section").length;
 	var visibleImagesArray = [];
 
