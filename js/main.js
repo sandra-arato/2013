@@ -2,6 +2,7 @@ var map;
 var currentZoom = 12;
 var isScreenSmallPortrait;
 var ie8;
+var imagesLoaded = 0;
 
 function windowResponsiveResize () {
 	
@@ -191,18 +192,36 @@ function firstMapLoad (currentPlace) {
 }
 
 function renderPhotos() {
-
+	
 	for (var i = 0, len = photos.length; i < len; i++) {
 		var photoSec = document.createElement("section");
-		$(photoSec).html("<img src='" + photos[i].url + "' alt= '" + photos[i].description + "'>")
-		.attr("id", "sec"+i);
+		
+		var img = $('<img />')
+			.attr('src', photos[i].url)
+			.attr('alt', photos[i].description)
+			.load(function () {
+				imagesLoaded++;
+				var percent = Math.round(imagesLoaded / len * 100);
+				$('label small').html(imagesLoaded + ' / ' +  len + ' loaded..');
+				$('html, body').css('overflow', 'hidden');
+				if (percent == 100) {
+					$('html, body').css('overflow', 'auto');
+					$('label small').html('scroll to start');
+					$(window).scroll(scrollHandler);
+				}
+				
+			});
+		$(photoSec)
+			.append(img)
+			.attr("id", "sec"+i);
 		var desc = document.createElement("div");
 		$(desc).html(photos[i].title + ', ' + photos[i].where).addClass("photo-description");	
 		$(desc).appendTo($(photoSec));	
 		
 		var month = document.createElement("div");
 		$(month).html(photos[i].when).addClass("photo-description").addClass("photo-month");	
-		$(month).appendTo($(photoSec));	
+		$(month).appendTo($(photoSec));
+			
 		$(photoSec).appendTo($("#container"));
 	};
 
@@ -241,8 +260,8 @@ function initialize() {
 	var placeInit = [23.612550, 58.593232];
 	firstMapLoad(placeInit);
 	$(window)
-		.resize(windowResponsiveResize)
-		.scroll(scrollHandler);
+		.resize(windowResponsiveResize);
+//		.scroll(scrollHandler);
 
 }
 	
