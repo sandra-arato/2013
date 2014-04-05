@@ -43,8 +43,8 @@ setPhoto(15, "Westhaven Marina", "New Zealand", "January", [-36.838057,174.75378
 setPhoto(16, "Kauaeranga Valley, Coromandel", "New Zealand", "January", [-37.0929171,175.64280987], 10);
 setPhoto(17, "Coromandel", "New Zealand", "January", [-36.722689,175.728734], 11);
 setPhoto(18, "Cathedral Cove", "New Zealand", "January", [-36.827728,175.7900487], 11);
-setPhoto(19, "Rotarua Museum", "New Zealand", "January", [-38.135589,176.258200], 11);
-setPhoto(20, "Government Gardens, Rotarua", "New Zealand", "January", [-38.135589,176.258200], 11);
+setPhoto(19, "Rotorua Museum", "New Zealand", "January", [-38.135589,176.258200], 11);
+setPhoto(20, "Government Gardens, Rotorua", "New Zealand", "January", [-38.135589,176.258200], 11);
 setPhoto(21, "Kaituna River", "New Zealand", "January", [-38.007584,176.342153], 12);
 setPhoto(22, "Torrent Bay", "New Zealand", "February", [-40.949268,173.049603], 12);
 setPhoto(23, "Pancake Rocks", "New Zealand", "February", [-42.114158,171.326802], 9);
