@@ -2,7 +2,7 @@ var photos = [];
 
 for (var i = 1; i <75; i++) {
 	var currentPhoto = {
-		url: "img/" + i + ".jpeg",
+		url: "img/" + i + ".jpg",
 		where: "TBC",
 		when: "",
 		latlong: [-35.290328,149.117965],
